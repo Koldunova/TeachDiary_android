@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:App3.ViewModels"
+             x:Class="App3.Views.ItemsPage"
+              Title="{Binding Title}"
+             x:Name="BrowseItemsPage"
+             >
+    <ContentPage.BindingContext>
+        <vm:ItemsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#0d897e</Color>
+            <!-- странный зеленый (Teal)-->
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Label x:Name="Days" FontSize="Default" FontAttributes="Bold" Text=""/>
+        <!-- Дата (Teal)-->
+        <ListView x:Name="eventsList"
+              HasUnevenRows="True"
+              ItemsSource="{Binding ActualEvent}"
+              ItemTapped="OnItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                        Text="{Binding Name}"
+                        Detail="{Binding Inf}"
+                        TextColor="Teal"
+                        DetailColor="DarkGray"
+                        />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button  Grid.Column="1" Grid.Row="0" Text = "+" FontSize="25" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+            Clicked="Button_Clicked" />
+
+            <Button  Grid.Column="0" Grid.Row="0" Text = "◀" FontSize="25" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                     Clicked="Button_Previous"
+            />
+            <Button  Grid.Column="2" Grid.Row="0" Text = "▶" FontSize="25" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                     Clicked="Button_Next"      
+            />
+
+        </Grid>
+
+    </StackLayout>
+</ContentPage>

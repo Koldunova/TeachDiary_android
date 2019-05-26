@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.Views.TimePage"
+             xmlns:vm="clr-namespace:App3.ViewModels"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:TimeViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--Page Level Resources: Compatibile with Xamarin Live Player -->
+            <Color x:Key="Primary">#0d897e</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!--шапка-->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <!--расписание-->
+            <RowDefinition Height="*" />
+            <!--кнопка-->
+        </Grid.RowDefinitions>
+
+        <Button  Grid.Column="0" Grid.Row="0" Text = "ПН" FontSize="Default" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+               x:Name="b_mon" Clicked="Button_Mon"/>
+        <Button  Grid.Column="1" Grid.Row="0" Text = "ВТ" FontSize="Default" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+                  x:Name="b_tues" Clicked="Button_Tues"/>
+        <Button  Grid.Column="2" Grid.Row="0" Text = "СР" FontSize="Default" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+                  x:Name="b_wed" Clicked="Button_Wed"/>
+        <Button  Grid.Column="3" Grid.Row="0" Text = "ЧТ" FontSize="Default" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+                  x:Name="b_thurs" Clicked="Button_Thurs"/>
+        <Button  Grid.Column="4" Grid.Row="0" Text = "ПТ" FontSize="Default" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                  x:Name="b_fri" Clicked="Button_Fri"/>
+        <Button  Grid.Column="5" Grid.Row="0" Text = "СБ" FontSize="Default" BorderWidth="1"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+                  x:Name="b_sat" Clicked="Button_Sat"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Text="1 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="2" Text="2 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="3" Text="3 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="4" Text="4 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="5" Text="5 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="6" Text="6 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="7" Text="7 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="8" Text="8 пара" FontFamily="Arial" FontSize="Large" />
+        <Label Grid.Column="0" Grid.Row="9" Text="9 пара" FontFamily="Arial" FontSize="Large" />
+        <!-- наполнение-->
+        <Label x:Name="p1" Grid.Column="1" Grid.Row="1" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p2" Grid.Column="1" Grid.Row="2" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p3" Grid.Column="1" Grid.Row="3" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p4" Grid.Column="1" Grid.Row="4" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p5" Grid.Column="1" Grid.Row="5" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p6" Grid.Column="1" Grid.Row="6" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p7" Grid.Column="1" Grid.Row="7" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p8" Grid.Column="1" Grid.Row="8" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+        <Label x:Name="p9" Grid.Column="1" Grid.Row="9" Text="Пара" FontFamily="Arial" FontSize="Large" Grid.ColumnSpan="5"/>
+
+        <!--наполнение-->
+        <Button  Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Text = "Изменить" FontSize="Medium" BorderWidth="1"
+                BackgroundColor="Teal"
+                TextColor="White" FontAttributes="Bold"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"  Clicked="Button_Clicked"/>
+    </Grid>
+</ContentPage>

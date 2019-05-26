@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="App3.Views.NewItemPage"
+		     Title="New Item">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        
+        <StackLayout>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <BoxView Color="Teal" Grid.Column="0" Grid.Row="0" />
+                <Label Grid.Column="0" Grid.Row="0" Text="Создание события" FontSize="25" TextColor="White"  TranslationX="15" TranslationY="10" FontAttributes="Bold" />
+                
+                <Label Grid.Column="0" Grid.Row="1" Text="Название события" FontSize="20" />
+                <Entry x:Name="EnName" Grid.Column="0" Grid.Row="2" Text="{Binding Item.Text}" FontSize="18" />
+                <Label Grid.Column="0" Grid.Row="4" Text="Описание события" FontSize="20" />
+                <Editor x:Name="EnInf" Grid.Column="0" Grid.Row="5" Text="{Binding Item.Description}" FontSize="18" Margin="0" />
+                <Label Grid.Column="0" Grid.Row="7" Text="Дата" FontSize="20"/>
+
+                <DatePicker  x:Name="EnDay"  Grid.Column="0" Grid.Row="8" Format="D" DateSelected="datePicker_DateSelected">
+                    <DatePicker.MinimumDate>1/01/2019</DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>6/30/2100</DatePicker.MaximumDate>
+                </DatePicker>
+               
+            </Grid>
+            <Button 
+                Text = "Сохранить" FontSize="20" BorderWidth="1"
+                  BackgroundColor="Teal"
+                    TextColor="White" FontAttributes="None"
+                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+                Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
