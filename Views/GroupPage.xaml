@@ -15,10 +15,9 @@
             <Color x:Key="LightTextColor">#999999</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <StackLayout>
-        <ScrollView>
-            <ListView x:Name="groupsList"
+        <ListView x:Name="groupsList"
               HasUnevenRows="True"
               ItemsSource="{Binding n_groups}"
                    ItemTapped="name_groups_ItemTapped">
@@ -31,6 +30,29 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </ScrollView>
+
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button  Grid.Column="1" Grid.Row="0" Text = "Добавить" FontSize="Medium" BorderWidth="1"
+                BackgroundColor="Teal"
+                TextColor="White" FontAttributes="None"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+            Clicked="Button_Add" />
+
+            <Button  Grid.Column="0" Grid.Row="0" Text = "Удалить" FontSize="Medium" BorderWidth="1"
+                BackgroundColor="Teal"
+                TextColor="White" FontAttributes="None"
+            HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                     Clicked="Button_Remove"
+            />
+
+        </Grid>
     </StackLayout>
 </ContentPage>

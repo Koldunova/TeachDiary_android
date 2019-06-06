@@ -8,7 +8,7 @@ using App3.MyXML;
 
 namespace App3.Views
 {
-    //[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewTimeTable : ContentPage
     {
         Color c2 = Color.FromRgb(13, 174, 142);
@@ -18,8 +18,8 @@ namespace App3.Views
         public NewTimeTable(TimePage t)
         {
             InitializeComponent();
-            tp = t;
             this.BindingContext = this;
+            tp = t;
             b_mon.FontSize *= 1.7;
             b_tues.FontSize *= 1.7;
             b_wed.FontSize *= 1.7;
@@ -311,6 +311,5 @@ namespace App3.Views
             sat();
             flag = 6;
         }
-       
     }
 }

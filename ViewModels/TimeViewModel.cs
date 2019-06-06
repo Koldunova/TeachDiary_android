@@ -11,6 +11,6 @@ namespace App3.ViewModels
         {
             Title = "Расписание";
 
-       }
+        }
     }
 }

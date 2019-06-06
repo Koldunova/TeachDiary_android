@@ -14,7 +14,6 @@ namespace App3.Views
     {
         public Item Item { get; set; }
         ItemsPage page;
-
         public NewItemPage(ItemsPage ipg)
         {
             InitializeComponent();
@@ -28,18 +27,15 @@ namespace App3.Views
 
             BindingContext = this;
         }
-
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
            
         }
-
         async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "AddItem", Item);
             await Navigation.PopModalAsync();
         }
-
         private void Button_Clicked(object sender, EventArgs e)
         {
             if (EnName.Text.Length > 0)

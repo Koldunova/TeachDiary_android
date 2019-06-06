@@ -24,14 +24,6 @@ namespace App3.Views
     public partial class ItemsPage : ContentPage
     {
         public  List<Eventt> ActualEvent { get; set; }
-        ItemsViewModel viewModel;
-
-        public static void fresh_list()
-        {
-
-        }
-
-
         public string split_date()
         {
             string act = DateTime.Now.Date.ToString().Substring(0, 10);
@@ -40,10 +32,8 @@ namespace App3.Views
             string res = "  Текущая дата " + act + "  Выбранная дата " + ch;
             return res;
         }
-
         public ItemsPage()
         {
-
             InitializeComponent();
             ActualEvent = new List<Eventt>();
             MyAllEvents.del_unactual();
@@ -52,7 +42,6 @@ namespace App3.Views
             
             this.BindingContext = this;
         }
-
         DateTime now = DateTime.Now.Date;
         public void update_events()
         {
@@ -71,23 +60,52 @@ namespace App3.Views
             Days.FontSize *= 1.356;
             this.BindingContext = this;
         }
-  
         public async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             ((ListView)sender).SelectedItem = null;
             Eventt selEvent = e.Item as Eventt;
             if (selEvent != null)
             {
-                await DisplayAlert($"{selEvent.Name}", $"{selEvent.Inf}", "OK");   
+                var ex = await DisplayAlert($"{selEvent.Name}", $"{selEvent.Inf}", "Удалить","Назад");
+                
+                if (ex.ToString()=="True")
+                {
+                    //todo удаление из файла и из листа
+                    string d = Days.Text.Substring(41, 11);
+                    int c = -1;
+                    
+                    foreach (Eventt el in MyAllEvents.Events)
+                    {
+                        c++;
+                        if (el.Day.Trim() == d.Trim() && el.Inf.Trim() == selEvent.Inf.Trim() && el.Name.Trim() == selEvent.Name.Trim())
+                        {
+                            MyAllEvents.Events.RemoveAt(c);
+                            break;
+                        }
+
+                    }
+                    XDocument xdoc = XDocument.Load(@"/storage/emulated/0/events");
+                    foreach (XElement el in xdoc.Element("Events").Elements("Event"))
+                    {
+                        if (el.Element("Day").Value.Trim() == d.Trim() && el.Element("Inf").Value.Trim() == selEvent.Inf.Trim() && el.Element("Title").Value.Trim() == selEvent.Name.Trim())
+                        {
+                            el.Remove();
+                            break;
+                        }
+                    }
+                    xdoc.Save(@"/storage/emulated/0/events");
+                    await DisplayAlert("Успешно", "Удалено", "ОК");
+                    MyAllEvents.find_actual(now);
+                    ActualEvent = MyAllEvents.ActualEv;
+                    eventsList.ItemsSource = ActualEvent;
+                }
             }
         }
-
-        private async Task Button_Clicked(object sender, EventArgs e)
+        public async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NewItemPage(this));
 
         }
-        
         private void Button_Previous(object sender, EventArgs e)
         {
             MyAllEvents.find_actual(now.AddDays(-1));
@@ -96,7 +114,6 @@ namespace App3.Views
             now = now.AddDays(-1);
             Days.Text = split_date();
         }
-
         private void Button_Next(object sender, EventArgs e)
         {
             MyAllEvents.find_actual(now.AddDays(+1));
