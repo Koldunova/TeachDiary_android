@@ -70,7 +70,8 @@ namespace App3.Views
                 {
                     if (mg.group == listGroupev.Group_name)
                     {
-                        await Navigation.PushModalAsync(new ItemDetailPage(this, mg));
+                        MyGroup mg1 = mg;
+                        await Navigation.PushModalAsync(new ItemDetailPage(this, mg1));
                     }
                 }
             }

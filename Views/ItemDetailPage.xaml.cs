@@ -14,7 +14,6 @@ namespace App3.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemDetailPage : ContentPage
     {
-
         StackLayout stackLayout;
         MyGroup mg;
         GroupPage gp;
@@ -23,11 +22,9 @@ namespace App3.Views
         {
             InitializeComponent();
             this.gp = gp;
-            this.mg = mg;
             //создание таблицы учащихся
-
+            this.mg = mg;
             update_page();
-
         }
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
@@ -97,6 +94,7 @@ namespace App3.Views
             ColumnDefinition col = new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) };
             cd.Add(col);
             //оценки
+            
             col = new ColumnDefinition { Width = new GridLength(50) };
             foreach (string les in mg.lessons)
             {
@@ -110,13 +108,15 @@ namespace App3.Views
 
 
             int i = 1;
-
-            for (int j = 1; j < mg.lessons.Count + 1; j++)
+            чащ
+            for (int j = 0; j < mg.lessons.Count ; j++)
             {
                 //заполнение дат
-                grid.Children.Add(new Label { Text = mg.lessons[j - 1].Substring(0, 5), TextColor = Color.Black }, j, 0);
+                if (mg.lessons[j].Length > 2)
+                {
+                    grid.Children.Add(new Label { Text = mg.lessons[j].Substring(0, 5), TextColor = Color.Black }, j + 1, 0);
+                }
             }
-
 
             foreach (Student st in mg.students)
             {
@@ -124,10 +124,12 @@ namespace App3.Views
                 grid.Children.Add(new Label { Text = st.full_name, HorizontalTextAlignment = TextAlignment.Center, VerticalTextAlignment = TextAlignment.Center, TextColor = Color.Black }, 0, i);
 
                 //заполнение оценок
-                for (int u = 1; u < st.marks.Count + 1; u++)
-                {
-                    grid.Children.Add((new Entry { Text = st.marks[u - 1], HorizontalTextAlignment = TextAlignment.Center, IsEnabled = false }), u, i);
-                }//, IsEnabled = false
+                
+                    for (int u = 1; u < st.marks.Count + 1; u++)
+                    {
+                        grid.Children.Add((new Entry { Text = st.marks[u - 1], HorizontalTextAlignment = TextAlignment.Center, IsEnabled = false }), u, i);
+                    }//, IsEnabled = false
+               //тут где то есть КОСЯК!! НО Я НЕ ЗНАЮ КАКОЙ
 
                 i++;
             }
@@ -221,7 +223,6 @@ namespace App3.Views
             Button b = (Button)sender;
             if (b.Text == "Изменить")
             {
-
                 b.Text = "Сохранить";
                 for (int i = 0; i < (grid.RowDefinitions.Count * grid.ColumnDefinitions.Count) - 1; i++)
                 {
